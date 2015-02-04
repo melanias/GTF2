@@ -1,0 +1,14 @@
+*~
+.~*
+dist
+test
+build
+target
+private
+.directory
+private.xml
+ant-deploy.xml
+build-impl.xml
+genfiles.properties
+
+**/classes/*
