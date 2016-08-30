@@ -3,6 +3,8 @@ package br.com.sti.gtf.repository.impl;
 import br.com.sti.gtf.bean.Cor;
 import br.com.sti.gtf.repository.CorRepository;
 import br.com.sti.gtf.repository.GenericRepository;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -10,8 +12,9 @@ import br.com.sti.gtf.repository.GenericRepository;
  */
 public class CorRepositoryImpl extends GenericRepository<Cor, Integer> implements CorRepository {
 
-    public CorRepositoryImpl() {
-        super(Cor.class);
+    @Inject
+    public CorRepositoryImpl(EntityManager em) {
+        super(em);
     }
 
     @Override

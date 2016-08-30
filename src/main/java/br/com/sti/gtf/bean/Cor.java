@@ -8,9 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import br.com.sti.gtf.validation.CorValidation;
 
 /**
  *
@@ -18,7 +16,6 @@ import br.com.sti.gtf.validation.CorValidation;
  */
 @Entity
 @Table(name="cor")
-@CorValidation
 public class Cor implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +23,6 @@ public class Cor implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message="{cor.nome.NotNull}")
     @Column(length=50, nullable=false)
     private String nome;
 
@@ -36,10 +32,6 @@ public class Cor implements Serializable {
 
     public String getNome() { return nome; }
     public void setNome(String nome) {
-        if (nome == null) {
-            this.nome = nome;
-        } else {
-            this.nome = nome.trim();
-        }
+        this.nome = ((nome == null) ? nome : nome.trim());
     }
 }

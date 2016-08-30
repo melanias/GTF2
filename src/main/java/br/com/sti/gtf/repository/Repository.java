@@ -11,6 +11,10 @@ public interface Repository<E, I extends Serializable> {
 
     E find(I id);
 
+    E find(String field, String value);
+
+    List<E> findAll(String field, String value);
+
     E merge(E entity);
 
     void remove(E entity);
@@ -18,6 +22,10 @@ public interface Repository<E, I extends Serializable> {
     void refresh(E entity);
 
     void persist(E entity);
+
+    Long totalRecords();
+
+    Long totalRecords(String field);
 
     List<E> listAll();
 

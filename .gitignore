@@ -7,8 +7,25 @@ target
 private
 .directory
 private.xml
+nbactions.xml
 ant-deploy.xml
 build-impl.xml
 genfiles.properties
+nb-configuration.xml
 
 **/classes/*
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.project
+.classpath
+

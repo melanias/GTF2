@@ -3,6 +3,8 @@ package br.com.sti.gtf.repository.impl;
 import br.com.sti.gtf.bean.Combustivel;
 import br.com.sti.gtf.repository.CombustivelRepository;
 import br.com.sti.gtf.repository.GenericRepository;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -10,8 +12,9 @@ import br.com.sti.gtf.repository.GenericRepository;
  */
 public class CombustivelRepositoryImpl extends GenericRepository<Combustivel, Integer> implements CombustivelRepository {
 
-    public CombustivelRepositoryImpl() {
-        super(Combustivel.class);
+    @Inject
+    public CombustivelRepositoryImpl(EntityManager em) {
+        super(em);
     }
 
     @Override

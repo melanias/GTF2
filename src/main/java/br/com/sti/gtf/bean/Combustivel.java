@@ -8,9 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import br.com.sti.gtf.validation.CombustivelValidation;
 
 /**
  *
@@ -18,7 +15,6 @@ import br.com.sti.gtf.validation.CombustivelValidation;
  */
 @Entity
 @Table(name="combustivel")
-@CombustivelValidation
 public class Combustivel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +22,6 @@ public class Combustivel implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message="{combustivel.nome.NotNull}")
     @Column(length=100, nullable=false)
     private String nome;
 
@@ -39,11 +34,7 @@ public class Combustivel implements Serializable {
 
     public String getNome() { return nome; }
     public void setNome(String nome) {
-        if (nome == null) {
-            this.nome = nome;
-        } else {
-            this.nome = nome.trim();
-        }
+        this.nome = ((nome == null) ? nome : nome.trim());
     }
 
 //    public List<Veiculo> getVeiculos() { return veiculos; }
