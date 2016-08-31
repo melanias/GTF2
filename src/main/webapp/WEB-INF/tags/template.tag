@@ -309,7 +309,7 @@
         </div>
 
         <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
 
         <!-- Bootstrap v3.3.7 -->
         <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
