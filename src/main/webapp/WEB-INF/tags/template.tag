@@ -28,8 +28,24 @@
         <link href="${pageContext.request.contextPath}/plugins/lte/css/AdminLTE.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/plugins/lte/css/skins/skin-black.min.css" rel="stylesheet">
 
+        <!-- Snarl v0.3.3 -->
+        <link href="${pageContext.request.contextPath}/plugins/snarl/snarl.min.css" rel="stylesheet">
+
+        <!-- iCheck v1.0.2 -->
+        <link href="${pageContext.request.contextPath}/plugins/icheck/skins/minimal/minimal.css" rel="stylesheet">
+
+        <!-- Select2 v4.0.3 -->
+        <link href="${pageContext.request.contextPath}/plugins/select2/select2.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/plugins/select2/select2-bootstrap.min.css" rel="stylesheet">
+
+        <!-- DataTables v1.10.8 -->
+        <link href="${pageContext.request.contextPath}/plugins/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
         <!-- App -->
         <link href="${pageContext.request.contextPath}/css/gtf.css" rel="stylesheet">
+        <script>
+            var ROOTURL = "${pageContext.request.contextPath}";
+        </script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +59,6 @@
     <body class="hold-transition skin-black fixed sidebar-mini">
         <!-- wrapper -->
         <div class="wrapper">
-
             <header class="main-header">
                 <a href="${linkTo[IndexController].index}" class="logo">
                     <span class="logo-mini">${environment.get('app.home')}</span>
@@ -106,7 +121,7 @@
                             </a>
                         </li>
 
-<!--                        <li>
+                        <!--<li>
                             <a href="../widgets.html">
                                 <i class="fa fa-th"></i> <span>Widgets</span>
                                 <span class="pull-right-container">
@@ -216,29 +231,14 @@
                 <div class="pull-right hidden-xs">
                     <strong>Versão:</strong>&nbsp;${environment.get('app.version')}
                 </div>
-                <strong>Copyright&nbsp;&copy;&nbsp;2016&nbsp;<a href="http://www.amgesp.al.gov.br">AMGESP</a>.</strong>
+                <strong>Copyright&nbsp;&copy;&nbsp;2016&nbsp;-&nbsp;<a href="${linkTo[IndexController].index}">Locadora São Sebastião</a>.</strong>
                 Todos os direitos reservados.
             </footer>
         </div>
         <!-- ./wrapper -->
 
 
-
-
-
-
         <!--
-        <c:if test="${not empty successMessage}">
-        <!-- Success message ->
-        <div class="page-alert">
-            <div class="alert alert-info alert-fixed-bottom alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <p><strong>${successMessage}</strong></p>
-            </div>
-        </div>
-        <!-- ./Success message ->
-        </c:if>
-
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -308,56 +308,34 @@
             </div>
         </div>
 
-        <!-- Container ->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        ${title}
-                        <small>
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            ${subTitle}
-                        </small>
-                    </h1>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <jsp:doBody/>
-                </div>
-            </div>
-        </div>
-        <!-- ./Container -->
-
         <!-- jQuery -->
         <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.min.js"></script>
 
-        <!-- Bootstrap -->
+        <!-- Bootstrap v3.3.7 -->
         <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <!--<script src="${pageContext.request.contextPath}/plugins/bootstrap/js/jasny-bootstrap.min.js"></script>-->
+        <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/jasny-bootstrap.min.js"></script>
 
         <!-- ADminLTE v2.3.6 -->
         <script src="${pageContext.request.contextPath}/plugins/lte/js/app.min.js"></script>
 
-        <!-- DataTables ->
-        <script src="${pageContext.request.contextPath}/datatables/dataTables.min.js"></script>
-        <script src="${pageContext.request.contextPath}/datatables/dataTables.bootstrap.js"></script>
+        <!-- jQuery Mask Plugin v1.13.4 -->
+        <script src="${pageContext.request.contextPath}/js/jquery.mask.min.js"></script>
 
-        <!-- meioMask ->
-        <script src="${pageContext.request.contextPath}/js/meiomask.js"></script>
+        <!-- Snarl v0.3.3 -->
+        <script src="${pageContext.request.contextPath}/plugins/snarl/snarl.min.js"></script>
 
-        <!-- Root URL ->
-        <script type="text/javascript">
-            const ROOTURL  = "${pageContext.request.contextPath}";
-        </script>
+        <!-- iCheck v1.0.2 -->
+        <script src="${pageContext.request.contextPath}/plugins/icheck/icheck.min.js"></script>
 
-        <!-- App JS ->
-        <script src="${pageContext.request.contextPath}/js/gtfall.js"></script>
-        -->
+        <!-- Select2 v4.0.3 -->
+        <script src="${pageContext.request.contextPath}/plugins/select2/select2.min.js"></script>
+        <script src="${pageContext.request.contextPath}/plugins/select2/i18n/pt-BR.min.js"></script>
 
-        <script>
-            $.AdminLTE.tree('.sidebar');
-        </script>
+        <!-- DataTables v1.10.8 -->
+        <script src="${pageContext.request.contextPath}/plugins/datatables/js/dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
+
+        <!-- App JS -->
+        <script src="${pageContext.request.contextPath}/js/gtf.js"></script>
     </body>
 </html>
