@@ -1,0 +1,198 @@
+.box-header .box-tools a {
+    color: #444;
+}
+.box-body :last-child,
+.box-footer :last-child {
+    margin-bottom: 0;
+}
+
+.tooltip {
+    overflow-wrap: break-word;
+}
+
+/** fix treeview **/
+.sidebar-menu li.active > a > .pull-right-container > .fa-angle-left {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+/** fix treeview **/
+
+/** .table-bordered **/
+.table-bordered {
+    border: 1px solid #d2d6de;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #d2d6de;
+}
+
+.table-bordered > tbody > tr > td:last-of-type a {
+    color: #444;
+}
+/** .table-bordered **/
+
+.btn,
+.alert,
+.panel,
+.input-sm,
+.input-lg,
+.form-control,
+.input-group-addon,
+.input-group-addon.input-sm,
+.input-group-addon.input-lg,
+.checkbox label::before,
+.pagination,
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span { border-radius: 0; }
+
+.pagination li a,
+.radio input[type="radio"]:focus + label::before,
+.checkbox input[type="radio"]:focus + label::before,
+.checkbox input[type="checkbox"]:focus + label::before { outline: 0; }
+
+.checkbox label {
+    font-weight: bold;
+    text-align: left !important;
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+    border-color: #ddd;
+    background-color: #eee;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    color: #999;
+    border-color: #ddd;
+    background-color: #f5f5f5;
+}
+
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus { color: #999; }
+
+/** Snarl **/
+#snarl-wrapper {
+    top: 80px;
+    right: 20px;
+    z-index: 1080;
+}
+.snarl-notification .snarl-text { white-space: pre; }
+/** Snarl **/
+
+/** Typeahead **/
+/*ul.typeahead li a { color: #3e3f3a; }
+ul.typeahead li.active a { color: #3e3f3a; }
+ul.typeahead li.active a:hover { color: #3e3f3a; }
+ul.typeahead li.active a:focus { color: #3e3f3a; }*/
+/** Typeahead **/
+
+/** Fixed action button **/
+.fab_wrapper {
+    position: fixed;
+    right: 20px;
+    bottom: 67px;
+    margin: 0;
+    padding: 0;
+    z-index: 998;
+}
+
+.fab_wrapper a {
+    display: block;
+    width: 48px;
+    height: 48px;
+    color: #fff;
+    cursor: pointer;
+    padding: 1px;
+    font-family: Verdana;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #273238;
+}
+.fab_wrapper a:hover {
+    background-color: #33424a;
+}
+.fab_wrapper a > i {
+    font-size: 28px;
+}
+.fab_wrapper a.pdf-file {
+    padding: 0;
+    background-color: #dd4b39;
+}
+/** Fixed action button **/
+
+/** DataTables **/
+table.dataTable > thead > tr > th { border-bottom: 1px solid #ddd !important; }
+
+div.dataTables_wrapper { margin: 0; }
+
+div.dataTables_wrapper div.dataTables_info { margin: 0; padding-top: 3px; }
+
+div.dataTables_wrapper div.dataTables_length label,
+div.dataTables_wrapper div.dataTables_filter label,
+div.dataTables_wrapper div.dataTables_paginate ul.pagination { margin: 0; }
+
+div.dataTables_wrapper div.dataTables_paginate { line-height: 0; }
+
+div.dataTables_wrapper div.dataTables_filter { float: right; }
+div.dataTables_wrapper div.dataTables_filter input { margin-left: 0; border-radius: 0; }
+div.dataTables_wrapper div.dataTables_filter span.input-group-addon { border-radius: 0; }
+/** DataTables **/
+
+/** Select2 **/
+.select2-container--bootstrap .select2-dropdown,
+.select2-container--bootstrap .select2-selection.input-sm,
+.select2-container--bootstrap .select2-selection.input-lg,
+.select2-container--bootstrap .select2-selection.form-control,
+.select2-container--bootstrap .select2-search--dropdown .select2-search__field {
+    font-family: 'Roboto Condensed';
+    box-shadow: none;
+    border-radius: 0;
+    border-color: #d2d6de;
+}
+
+.select2-container--bootstrap .select2-selection.input-sm {
+    line-height: 2.3;
+}
+/** Select2 **/
+
+/** typeahead **/
+.typeahead li a {
+    word-wrap: break-word;
+    text-align: justify;
+    white-space: normal;
+}
+/** typeahead **/
+
+/** modal **/
+.modal-footer { margin: 0; }
+
+.modal-body {/* border: 1px solid black; */}
+.modal-body > form > hr { margin-bottom: 0; }
+.modal-body > form > div.row:not(:first-child) label,
+.modal-body > form > div.form-group:not(:first-child) label { margin-top: 15px; }
+
+.modal-body > p:last-of-type { margin-bottom: 0; }
+
+.modal-body > table:last-of-type { margin-bottom: 0; }
+.modal-body > table > tbody > tr > th { width: 1%; text-align: right; white-space: nowrap; }
+/** modal **/
