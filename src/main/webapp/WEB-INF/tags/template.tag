@@ -41,6 +41,9 @@
         <!-- DataTables v1.10.8 -->
         <link href="${pageContext.request.contextPath}/plugins/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
+        <!-- App Fonts -->
+        <link href="${pageContext.request.contextPath}/css/fonts.css" rel="stylesheet">
+
         <!-- App -->
         <link href="${pageContext.request.contextPath}/css/gtf.css" rel="stylesheet">
         <script>
@@ -75,16 +78,19 @@
 
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
+                            <c:if test="${funcionarioSession.perfil == 'ADMINISTRADOR'}">
+                            <li><a href="${linkTo[FuncionarioController].list}">Funcionário</a></li>
+                            </c:if>
 
                             <li class="dropdown user">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-user"></i>
-                                    <span class="hidden-xs">Phelipe Melanias${funcionarioSession.firstAndLastName}</span>
+                                    <span class="hidden-xs">${funcionarioSession.firstAndLastName}</span>
                                     <i class="fa fa-fw fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="${linkTo[WorkerController].editAccount}"><span class="fa fa-pencil"></span>&nbsp;Alterar conta</a></li>
-                                    <li><a href="${linkTo[WorkerController].editPasswd}"><span class="fa fa-key"></span>&nbsp;Alterar senha</a></li>
+                                    <li><a href="${linkTo[FuncionarioController].editAccount}"><span class="fa fa-pencil"></span>&nbsp;Alterar conta</a></li>
+                                    <li><a href="${linkTo[FuncionarioController].editPassword}"><span class="fa fa-key"></span>&nbsp;Alterar senha</a></li>
                                     <li class="divider"></li>
                                     <li><a href="${linkTo[LoginController].logout}"><span class="fa fa-sign-out"></span>&nbsp;Sair</a></li>
                                 </ul>
@@ -335,7 +341,7 @@
         <script src="${pageContext.request.contextPath}/plugins/datatables/js/dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
 
-        <!-- App JS -->
+        <!-- App -->
         <script src="${pageContext.request.contextPath}/js/gtf.js"></script>
     </body>
 </html>

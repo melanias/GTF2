@@ -16,7 +16,9 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import br.com.caelum.vraptor.serialization.SkipSerialization;
+
 import br.com.sti.gtf.enums.EmployeeStatus;
+import br.com.sti.gtf.enums.Role;
 
 /**
  *
@@ -29,7 +31,7 @@ public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="dt_cadastro", nullable=false, updatable=false)
@@ -41,6 +43,9 @@ public class Funcionario implements Serializable {
     @Column(length=200, unique=true, nullable=false)
     private String nome;
 
+    @Column(length=200)
+    private String email;
+
     @SkipSerialization
     @Column(length=128, nullable=false)
     private String senha;
@@ -51,11 +56,15 @@ public class Funcionario implements Serializable {
 
     @Enumerated(EnumType.ORDINAL)
     @Column(columnDefinition="smallint", nullable=false)
+    private Role perfil;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(columnDefinition="smallint", nullable=false)
     private EmployeeStatus status;
 
     //getters e setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public Date getData() { return data; }
     public void setData(Date data) { this.data = data; }
@@ -68,6 +77,11 @@ public class Funcionario implements Serializable {
         this.nome = ((nome == null) ? nome : nome.trim());
     }
 
+    public String getEmail() { return email; }
+    public void setEmail(String email) {
+        this.email = ((email == null) ? email : email.trim());
+    }
+
     public String getSenha() { return senha; }
     public void setSenha(String senha) {
         this.senha = ((senha == null) ? senha : senha.trim());
@@ -78,6 +92,9 @@ public class Funcionario implements Serializable {
         this.checkPassword = ((checkPassword == null) ? checkPassword
                                                       : checkPassword.trim());
     }
+
+    public Role getPerfil() { return perfil; }
+    public void setPerfil(Role perfil) { this.perfil = perfil; }
 
     public EmployeeStatus getStatus() { return status; }
     public void setStatus(EmployeeStatus status) { this.status = status; }

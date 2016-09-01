@@ -1,10 +1,12 @@
 package br.com.sti.gtf.session;
 
 import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import br.com.sti.gtf.bean.Funcionario;
+import br.com.sti.gtf.enums.Role;
 
 /**
  *
@@ -23,7 +25,8 @@ public class FuncionarioSession implements Serializable {
     public void login(Funcionario funcionario) { this.funcionario = funcionario; }
 
     //getters
-    public Integer getId() { return funcionario.getId(); }
+    public Long getId() { return funcionario.getId(); }
     public String getNome() { return funcionario.getNome(); }
+    public Role getPerfil() { return funcionario.getPerfil(); }
     public String getFirstAndLastName() { return funcionario.getFirstAndLastName(); }
 }
