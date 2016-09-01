@@ -1,10 +1,11 @@
 package br.com.sti.gtf.repository.impl;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
 import br.com.sti.gtf.bean.Cor;
 import br.com.sti.gtf.repository.CorRepository;
 import br.com.sti.gtf.repository.GenericRepository;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *

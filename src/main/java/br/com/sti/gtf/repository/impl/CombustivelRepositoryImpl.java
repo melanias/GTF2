@@ -1,10 +1,11 @@
 package br.com.sti.gtf.repository.impl;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
 import br.com.sti.gtf.bean.Combustivel;
 import br.com.sti.gtf.repository.CombustivelRepository;
 import br.com.sti.gtf.repository.GenericRepository;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *
