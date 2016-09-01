@@ -26,22 +26,12 @@
                                                 <label for="nome">Nome</label>
                                                 <input type="text" name="funcionario.nome" value="${funcionario.nome}" class="form-control input-sm" id="nome" maxlength="200">
                                             </div>
-
-                                            <div class="col-md-2">
-                                                <label for="celular">Celular</label>
-                                                <input type="text" name="funcionario.celular" value="${funcionario.celular}" class="form-control input-sm" id="celular" alt="fone">
-                                            </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="col-md-3">
                                                 <label for="email">E-mail</label>
-                                                <input type="email" name="funcionario.email" value="${funcionario.email}" class="form-control input-sm" id="email" maxlength="100">
-                                            </div>
-
-                                            <div class="col-md-2">
-                                                <label for="telefone">Telefone</label>
-                                                <input type="text" name="funcionario.telefone" value="${funcionario.telefone}" class="form-control input-sm" id="telefone" alt="fone">
+                                                <input type="email" name="funcionario.email" value="${funcionario.email}" class="form-control input-sm" id="email" maxlength="200">
                                             </div>
                                         </div>
                                     </div>

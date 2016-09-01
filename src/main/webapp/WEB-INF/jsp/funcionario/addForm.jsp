@@ -37,7 +37,7 @@
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <label for="email">E-mail</label>
-                                                        <input type="email" name="funcionario.email" value="${funcionario.email}" class="form-control input-sm" id="email" maxlength="100">
+                                                        <input type="email" name="funcionario.email" value="${funcionario.email}" class="form-control input-sm" id="email" maxlength="200">
                                                     </div>
                                                 </div>
 

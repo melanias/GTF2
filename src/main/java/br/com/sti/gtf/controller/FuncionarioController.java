@@ -1,5 +1,13 @@
 package br.com.sti.gtf.controller;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+
+import org.apache.commons.lang3.StringUtils;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -7,22 +15,16 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.validator.I18nMessage;
-import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
+
 import br.com.sti.gtf.bean.Funcionario;
 import br.com.sti.gtf.enums.EmployeeStatus;
 import br.com.sti.gtf.enums.Role;
 import br.com.sti.gtf.repository.FuncionarioRepository;
 import br.com.sti.gtf.session.FuncionarioSession;
-import br.com.sti.gtf.util.Utilities;
 import static br.com.sti.gtf.util.Utilities.cpf;
 import static br.com.sti.gtf.util.Utilities.mail;
 import static br.com.sti.gtf.util.Utilities.sha512;
-import java.util.Date;
-import java.util.List;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -128,7 +130,7 @@ public class FuncionarioController extends MainController {
         }
 
         //Title and subtitle
-        result.include("title", "Funcionários");
+        result.include("title", "Funcionário");
         result.include("subTitle", "Editar funcionário");
 
 
@@ -143,30 +145,32 @@ public class FuncionarioController extends MainController {
     @Post("/edit/{funcionario.id}")
     public void edit(Funcionario funcionario, boolean resetPasswd) {
         //CPF
-        if (funcionario.getCpf() == null || funcionario.getCpf().isEmpty()) {
-            validator.add(new SimpleMessage("funcionario.cpf", "Informe o CPF do funcionário."));
-        } else if (!cpf(funcionario.getCpf())) {
-            validator.ensure(cpf(funcionario.getCpf()), new SimpleMessage("funcionario.cpf", "CPF inválido."));
+        if (StringUtils.isBlank(funcionario.getCpf())) {
+            validator.add(new I18nMessage("funcionario.cpf", "cpf.em.branco"));
+        } else if (cpf(funcionario.getCpf())) {
+            validator.ensure(funcionarioRepository.isUniqueCPF(funcionario), new I18nMessage("funcionario.cpf", "cpf.existente"));
         } else {
-            validator.ensure(funcionarioRepository.isUniqueCPF(funcionario), new SimpleMessage("funcionario.cpf", "Já existe um funcionário com este CPF."));
+            validator.add(new I18nMessage("funcionario.cpf", "cpf.invalido"));
         }
 
         //Nome
-        if (funcionario.getNome() == null || funcionario.getNome().isEmpty()) {
-            validator.add(new SimpleMessage("funcionario.nome", "Informe o nome do funcionário."));
+        if (StringUtils.isBlank(funcionario.getNome())) {
+            validator.add(new I18nMessage("funcionario.nome", "nome.em.branco"));
         } else {
-            validator.ensure(funcionarioRepository.isUniqueName(funcionario), new SimpleMessage("funcionario.nome", "Já existe um funcionário com este nome."));
+            validator.ensure(funcionarioRepository.isUniqueName(funcionario), new I18nMessage("funcionario.nome", "nome.existente"));
         }
 
         //E-mail
-        if (funcionario.getEmail() != null && !funcionario.getEmail().isEmpty()) {
-            validator.ensure(mail(funcionario.getEmail()), new SimpleMessage("funcionario.email", "E-mail inválido."));
+        if (StringUtils.isBlank(funcionario.getEmail())) {
+            validator.add(new I18nMessage("funcionario.email", "email.em.branco"));
+        } else {
+            validator.ensure(mail(funcionario.getEmail()), new I18nMessage("funcionario.email", "email.invalido"));
         }
 
 
         if (validator.hasErrors()) {
             //Title and subtitle
-            result.include("title", "Funcionários");
+            result.include("title", "Funcionário");
             result.include("subTitle", "Editar funcionário");
 
             //Enumerations
@@ -209,18 +213,21 @@ public class FuncionarioController extends MainController {
         funcionario.setId(old.getId());
         funcionario.setCpf(old.getCpf());
         funcionario.setSenha(old.getSenha());
+        funcionario.setPerfil(old.getPerfil());
         funcionario.setStatus(old.getStatus());
 
         //Nome
-        if (funcionario.getNome() == null || funcionario.getNome().isEmpty()) {
-            validator.add(new SimpleMessage("funcionario.nome", "Informe o seu nome."));
+        if (StringUtils.isBlank(funcionario.getNome())) {
+            validator.add(new I18nMessage("funcionario.nome", "nome.em.branco"));
         } else {
-            validator.ensure(funcionarioRepository.isUniqueName(funcionario), new SimpleMessage("funcionario.nome", "Já existe um funcionário com este nome."));
+            validator.ensure(funcionarioRepository.isUniqueName(funcionario), new I18nMessage("funcionario.nome", "nome.existente"));
         }
 
         //E-mail
-        if (funcionario.getEmail() != null && !funcionario.getEmail().isEmpty()) {
-            validator.ensure(mail(funcionario.getEmail()), new SimpleMessage("funcionario.email", "O e-mail informado não é válido."));
+        if (StringUtils.isBlank(funcionario.getEmail())) {
+            validator.add(new I18nMessage("funcionario.email", "email.em.branco"));
+        } else {
+            validator.ensure(mail(funcionario.getEmail()), new I18nMessage("funcionario.email", "email.invalido"));
         }
 
         if (validator.hasErrors()) {
@@ -251,35 +258,40 @@ public class FuncionarioController extends MainController {
     //__________________________________________________________________________
     @Transactional
     @Post("/password")
-    public void password(Funcionario funcionario) {
-        //Validar a senha se necessário
-        if (funcionario.getSenha() != null && !funcionario.getSenha().isEmpty()) {
-            //Senha
-            validator.ensure(funcionario.getSenha().length() > 5, new SimpleMessage("funcionario.senha", "A nova senha deve ter no mínimo 6 caracteres."));
+    public void password(Funcionario funcionario, String currentPassword) {
+        Funcionario f = funcionarioRepository.find(funcionarioSession.getId());
 
-            //Confirmação da senha
-            if (funcionario.getSenha().length() > 5) {
-                if (funcionario.getCheckPassword() == null || funcionario.getCheckPassword().isEmpty()) {
-                    validator.add(new SimpleMessage("funcionario.checkPassword", "Confirme a nova senha."));
-                } else {
-                    validator.ensure(funcionario.getSenha().equals(funcionario.getCheckPassword()), new SimpleMessage("funcionario.checkPassword", "A senha de confirmação não confere com a senha informada."));
-                }
+        //Validar senha atual
+        validator.ensure(StringUtils.isNotBlank(currentPassword), new I18nMessage("currentPassword", "currentPassword.em.branco"));
+
+        if (!validator.hasErrors()) {
+            validator.ensure(f.getSenha().equals(sha512(currentPassword)), new I18nMessage("currentPassword", "currentPassword.incorreta"));
+        }
+
+        //Validar a nova senha
+        if (!validator.hasErrors()) {
+            validator.ensure(StringUtils.length(funcionario.getSenha()) > 5, new I18nMessage("funcionario.senha", "senha.invalida", 6));
+        }
+
+        //Validar a confirmação da nova senha
+        if (!validator.hasErrors()) {
+            if (StringUtils.isBlank(funcionario.getCheckPassword())) {
+                validator.add(new I18nMessage("funcionario.checkPassword", "checkPassword.em.branco"));
+            } else {
+                validator.ensure(funcionario.getSenha().equals(funcionario.getCheckPassword()), new I18nMessage("funcionario.checkPassword", "checkPassword.diferente"));
             }
-        } else {
-            validator.add(new SimpleMessage("funcionario.senha", "Informe uma nova senha."));
         }
 
         if (validator.hasErrors()) {
-            result.include("title", "Perfil");
-            result.include("subTitle", "Alterar senha");
+            result.include("title", "Perfil")
+                  .include("subTitle", "Alterar senha");
         }
 
         //Exibir form com os erros de validação
         validator.onErrorUsePageOf(this).editPassword();
 
         //Alterar a senha
-        Funcionario f = funcionarioRepository.find(funcionarioSession.getId());
-        f.setSenha(Utilities.sha512(funcionario.getSenha()));
+        f.setSenha(sha512(funcionario.getSenha()));
 
         //Salvar alterações
         funcionarioRepository.merge(f);
