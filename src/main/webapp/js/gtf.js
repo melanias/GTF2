@@ -40,7 +40,6 @@ jQuery(function($){
     ).next(".select2-container--bootstrap").find(".select2-selection").addClass("input-sm");
     //Select2//
 
-
     //jQuery Mask Plugin
     var PhoneMaskBehavior = function(value) {
         return value.replace(/\D/g, "").length === 11 ? "(00) 00000-0000" : "(00) 0000-00009";
