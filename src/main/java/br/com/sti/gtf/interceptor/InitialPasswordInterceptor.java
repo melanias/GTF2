@@ -56,7 +56,7 @@ public class InitialPasswordInterceptor {
         }
 
         //Mensagem de alerta
-        I18nMessage warning = new I18nMessage("password", "password.default.unchanged");
+        I18nMessage warning = new I18nMessage("password", "initial.password.unchanged");
         warning.setBundle(bundle);
 
         result.include("warningMessage", Arrays.asList(warning).get(0));
