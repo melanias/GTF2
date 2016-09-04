@@ -270,7 +270,11 @@ public class FuncionarioController extends MainController {
 
         //Validar a nova senha
         if (!validator.hasErrors()) {
-            validator.ensure(StringUtils.length(funcionario.getSenha()) > 5, new I18nMessage("funcionario.senha", "senha.invalida", 6));
+            validator.ensure(StringUtils.length(funcionario.getSenha()) > 5, new I18nMessage("funcionario.senha", "senha.tamanho.invalido", 6));
+        }
+
+        if (!validator.hasErrors()) {
+            validator.addIf(funcionario.getSenha().equals(environment.get("default_password")), new I18nMessage("funcionario.senha", "senha.invalida"));
         }
 
         //Validar a confirmação da nova senha

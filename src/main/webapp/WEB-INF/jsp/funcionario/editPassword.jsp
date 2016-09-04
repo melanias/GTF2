@@ -49,6 +49,12 @@
                                 <p><strong>${successMessage}</strong></p>
                             </div>
                             </c:if>
+                            <c:if test="${not empty warningMessage && (empty successMessage && empty errors)}">
+                            <div class="alert alert-warning alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <p><strong>${warningMessage.message}</strong></p>
+                            </div>
+                            </c:if>
                             <c:if test="${not empty errors}">
                             <div class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
