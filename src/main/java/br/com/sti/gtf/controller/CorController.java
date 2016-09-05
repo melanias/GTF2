@@ -25,7 +25,7 @@ import br.com.sti.gtf.repository.CorRepository;
 @Controller @Path("/cor")
 public class CorController extends MainController {
 
-    private final CorRepository corRepository;
+    private final CorRepository repository;
 
     /**
      * @deprecated CDI eyes only
@@ -35,9 +35,9 @@ public class CorController extends MainController {
     }
 
     @Inject
-    public CorController(Result result, Validator validator, CorRepository corRepository) {
+    public CorController(Result result, Validator validator, CorRepository repository) {
         super(result, validator);
-        this.corRepository = corRepository;
+        this.repository = repository;
     }
 
 
@@ -47,7 +47,7 @@ public class CorController extends MainController {
               .include("subTitle", "Lista de cores")
               .include("editTitle", "Editar cor");
 
-        return corRepository.listAllOrderedByField("nome");
+        return repository.listAllOrderedByField("nome");
     }
 
     @Get("/add")
@@ -64,14 +64,14 @@ public class CorController extends MainController {
         if (StringUtils.isBlank(cor.getNome())) {
             validator.add(new I18nMessage("cor.nome", "cor.em.branco"));
         } else {
-            validator.ensure(corRepository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
+            validator.ensure(repository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
         }
 
         //Exibir form com os erros de validação
         validator.onErrorRedirectTo(this).addForm();
 
         //Salvar
-        corRepository.persist(cor);
+        repository.persist(cor);
         result.include("successMessage", "Cor cadastrada com sucesso.");
 
         result.redirectTo(this).addForm();
@@ -79,7 +79,7 @@ public class CorController extends MainController {
 
     @Get("/edit/{id}")
     public Cor editForm(Integer id) {
-        Cor cor = corRepository.find(id);
+        Cor cor = repository.find(id);
 
         if (cor == null) {
             result.redirectTo(this).list();
@@ -99,7 +99,7 @@ public class CorController extends MainController {
         if (StringUtils.isBlank(cor.getNome())) {
             validator.add(new I18nMessage("cor.nome", "cor.em.branco"));
         } else {
-            validator.ensure(corRepository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
+            validator.ensure(repository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
         }
 
         if (validator.hasErrors()) {
@@ -111,7 +111,7 @@ public class CorController extends MainController {
         validator.onErrorUsePageOf(this).editForm(cor.getId());
 
         //Salvar alterações
-        corRepository.merge(cor);
+        repository.merge(cor);
         result.include("successMessage", "Cor alterada com sucesso.");
 
         result.redirectTo(this).editForm(cor.getId());

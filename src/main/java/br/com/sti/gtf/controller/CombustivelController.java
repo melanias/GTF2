@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
@@ -19,44 +20,44 @@ import br.com.sti.gtf.repository.CombustivelRepository;
  *
  * @author Phelipe Melanias
  */
-@Controller
+@Controller @Path("/combustivel")
 public class CombustivelController extends MainController {
 
-    @Inject
-    private CombustivelRepository repository;
+    private final CombustivelRepository repository;
 
     /**
      * @deprecated CDI eyes only
      */
     protected CombustivelController() {
-        super(null, null);
+        this(null, null, null);
     }
 
     @Inject
-    public CombustivelController(Result result, Validator validator) {
+    public CombustivelController(Result result, Validator validator, CombustivelRepository repository) {
         super(result, validator);
+        this.repository = repository;
     }
 
 
-    @Get("/combustivel")
+    @Get
     public List<Combustivel> list() {
-        result.include("title", "Combustível");
-        result.include("subTitle", "Gerenciamento de combustível");
-        result.include("addTitle", "Cadastrar combustível");
-        result.include("editTitle", "Editar combustível");
+        result.include("title", "Combustível")
+              .include("subTitle", "Lista de combustíveis")
+              //.include("addTitle", "Cadastrar combustível")
+              .include("editTitle", "Editar combustível");
 
         return repository.listAllOrderedByField("nome");
     }
 
-    @Get("/combustivel/add")
+    @Get("/add")
     public void addForm() {
         result.include("title", "Combustível");
         result.include("subTitle", "Cadastrar combustível");
     }
 
     @Transactional
-    @Post("/combustivel/add")
-    public void add(@Valid Combustivel combustivel) {
+    @Post("/add")
+    public void add(Combustivel combustivel) {
         validator.onErrorRedirectTo(this).addForm();
 
         //Salvar
