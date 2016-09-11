@@ -22,7 +22,7 @@
         <link href="${pageContext.request.contextPath}/plugins/fa/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Ionicons v2.0.1 -->
-        <link  href="${pageContext.request.contextPath}/plugins/ionicons/css/ionicons.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/plugins/ionicons/css/ionicons.min.css" rel="stylesheet">
 
         <!-- ADminLTE v2.3.6 -->
         <link href="${pageContext.request.contextPath}/plugins/lte/css/AdminLTE.min.css" rel="stylesheet">
