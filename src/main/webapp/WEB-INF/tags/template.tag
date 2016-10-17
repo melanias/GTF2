@@ -241,6 +241,7 @@
 
         <!-- ADminLTE v2.3.6 -->
         <script src="${pageContext.request.contextPath}/plugins/lte/js/app.min.js"></script>
+        <script src="${pageContext.request.contextPath}/plugins/lte/js/jquery.slimscroll.min.js"></script>
 
         <!-- jQuery Mask Plugin v1.13.4 -->
         <script src="${pageContext.request.contextPath}/js/jquery.mask.min.js"></script>
@@ -261,5 +262,13 @@
 
         <!-- App -->
         <script src="${pageContext.request.contextPath}/js/gtf.js"></script>
+
+        <c:if test="${not empty ngApp && not empty ngController}">
+        <!-- AngularJS -->
+        <script src="${pageContext.request.contextPath}/js/angular.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/app/module/${ngApp}.module.js"></script>
+        <script src="${pageContext.request.contextPath}/js/app/service/${ngApp}.service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/app/controller/${ngApp}.controller.js"></script>
+        </c:if>
     </body>
 </html>

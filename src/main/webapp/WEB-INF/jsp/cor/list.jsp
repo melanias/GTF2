@@ -1,6 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:template title="${title}" subTitle="${subTitle}" ngApp="cor" ngController="CorController as cor">
+<t:template title="${title}" subTitle="${subTitle}" ngApp="cor" ngController="CorController as cc">
     <jsp:body>
                     <div class="row">
                         <div class="col-xs-12">
@@ -25,6 +25,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr ng-repeat="c in cc.cores">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{c.nome}}</td>
+                                                <td>
+                                                    <a href="${linkTo[CorController].editForm({{c.id}})}" role="button" title=""><i class="fa fa-fw fa-pencil"></i></a>
+                                                </td>
+                                            </tr>
+                                        <%--
                                         <c:forEach items="${corList}" var="cor" varStatus="row">
                                             <tr>
                                                 <td>${row.count}</td>
@@ -34,6 +42,7 @@
                                                 </td>
                                             </tr>
                                         </c:forEach>
+                                        --%>
                                         </tbody>
                                     </table>
                                     </c:when>
