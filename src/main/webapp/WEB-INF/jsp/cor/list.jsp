@@ -1,6 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:template title="${title}" subTitle="${subTitle}">
+<t:template title="${title}" subTitle="${subTitle}" ngApp="cor" ngController="CorController as cor">
     <jsp:body>
                     <div class="row">
                         <div class="col-xs-12">
