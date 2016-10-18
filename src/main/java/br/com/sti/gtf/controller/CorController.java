@@ -42,12 +42,10 @@ public class CorController extends MainController {
     }
 
     @Get
-    public List<Cor> list() {
+    public void list() {
         result.include("title", "Cor")
               .include("subTitle", "Lista de cores")
               .include("editTitle", "Editar cor");
-
-        return repository.listAllOrderedByField("nome");
     }
 
     @Get
