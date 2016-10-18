@@ -1,5 +1,5 @@
 (function() {
     "use strict";
 
-    angular.module("cor", []);
+    angular.module("cor", ["ngResource"]);
 })();

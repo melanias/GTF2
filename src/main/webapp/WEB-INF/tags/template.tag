@@ -266,6 +266,8 @@
         <c:if test="${not empty ngApp && not empty ngController}">
         <!-- AngularJS -->
         <script src="${pageContext.request.contextPath}/js/angular.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/angular-route.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/angular-resource.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/app/module/${ngApp}.module.js"></script>
         <script src="${pageContext.request.contextPath}/js/app/service/${ngApp}.service.js"></script>
         <script src="${pageContext.request.contextPath}/js/app/controller/${ngApp}.controller.js"></script>

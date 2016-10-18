@@ -2,20 +2,12 @@
     "use strict";
 
     angular.module("cor")
-           .factory("CorService", CorService);
+           .factory("corService", corService);
 
-   CorService.$inject = ["$http"];
+   corService.$inject = ["$resource"];
 
-   function CorService($http)
+   function corService($resource)
    {
-       var root = ROOTURL + "/cor/cores";
-
-       return {
-           getCores : getCores
-       };
-
-       function getCores() {
-           return $http.get(root);
-       }
+       return $resource(ROOTURL + "/cor/:params", {}, {});
    }
 })();

@@ -14,9 +14,7 @@
 
                                 <div class="box-body">
                                     <a href="${linkTo[CorController].addForm}" class="btn-floating"><i class="fa fa-lg fa-plus"></i></a>
-                                    <c:choose>
-                                    <c:when test="${not empty corList}">
-                                    <table class="table table-hover table-bordered table-condensed">
+                                    <table class="table table-hover table-bordered table-condensed" ng-show="cc.cores.length > 0">
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%;">#</th>
@@ -29,27 +27,12 @@
                                                 <td>{{$index+1}}</td>
                                                 <td>{{c.nome}}</td>
                                                 <td>
-                                                    <a href="${linkTo[CorController].editForm({{c.id}})}" role="button" title=""><i class="fa fa-fw fa-pencil"></i></a>
+                                                    <a ng-href="{{cc.url}}/cor/edit/{{c.id}}" role="button" title="${editTitle}"><i class="fa fa-fw fa-pencil"></i></a>
                                                 </td>
                                             </tr>
-                                        <%--
-                                        <c:forEach items="${corList}" var="cor" varStatus="row">
-                                            <tr>
-                                                <td>${row.count}</td>
-                                                <td>${cor.nome}</td>
-                                                <td>
-                                                    <a href="${linkTo[CorController].editForm(cor.id)}" role="button" title="${editTitle}"><i class="fa fa-fw fa-pencil"></i></a>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                        --%>
                                         </tbody>
                                     </table>
-                                    </c:when>
-                                    <c:otherwise>
-                                    <p>Nenhuma cor cadastrada até o momento. Clique <a href="${linkTo[CorController].addForm}">aqui</a> para cadastrar.</p>
-                                    </c:otherwise>
-                                    </c:choose>
+                                    <p ng-hide="cc.cores.length > 0">Nenhuma cor cadastrada até o momento. Clique <a href="${linkTo[CorController].addForm}">aqui</a> para cadastrar.</p>
                                 </div>
                                 <!-- ./box-body -->
                             </div>

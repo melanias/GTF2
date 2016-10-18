@@ -4,15 +4,17 @@
     angular.module("cor")
            .controller("CorController", CorController);
 
-    CorController.$inject = ["$window", "CorService"];
+    CorController.$inject = ["corService"];
 
-    function CorController($window, CorService) {
-        var cc = this;
-        cc.cor = {};
-        cc.cores = [];
+    function CorController(corService)
+    {
+        var cc       = this;
+            cc.cor   = {};
+            cc.cores = [];
+            cc.url   = ROOTURL;
 
         var init = function() {
-            CorService.getCores().success(function(data) {
+            corService.query(function(data) {
                 cc.cores = data;
             });
         }();

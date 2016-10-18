@@ -14,7 +14,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
-import br.com.caelum.vraptor.view.Results;
+import static br.com.caelum.vraptor.view.Results.json;
 
 import br.com.sti.gtf.bean.Cor;
 import br.com.sti.gtf.repository.CorRepository;
@@ -51,8 +51,9 @@ public class CorController extends MainController {
     }
 
     @Get
-    public void cores() {
-        result.use(Results.json()).withoutRoot().from(repository.listAllOrderedByField("nome")).serialize();
+    @Path(value={"", "/"})
+    public void listAll() {
+        result.use(json()).withoutRoot().from(repository.listAllOrderedByField("nome")).serialize();
     }
 
     @Get("/add")
