@@ -85,7 +85,7 @@
                                     <li><a href="${linkTo[FuncionarioController].editAccount}"><span class="fa fa-pencil"></span>&nbsp;Alterar conta</a></li>
                                     <li><a href="${linkTo[FuncionarioController].editPassword}"><span class="fa fa-key"></span>&nbsp;Alterar senha</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="${linkTo[LoginController].logout}"><span class="fa fa-sign-out"></span>&nbsp;Sair</a></li>
+                                    <li><a href="logout"><span class="fa fa-sign-out"></span>&nbsp;Sair</a></li>
                                 </ul>
                             </li>
                         </ul>

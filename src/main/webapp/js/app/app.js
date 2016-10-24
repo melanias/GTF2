@@ -11,6 +11,10 @@
                             templateUrl : "index"
                         })
 
+                        .when("/logout", {
+                            templateUrl : "logout"
+                        })
+
                         .when("/cor/list", {
                             templateUrl  : "cor/list",
                             controller   : "CorController",
