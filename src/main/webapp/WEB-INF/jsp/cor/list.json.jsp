@@ -1,7 +1,11 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags/" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:template title="${title}" subTitle="${subTitle}" ngApp="cor" ngController="CorController as cc">
-    <jsp:body>
+                <div class="content-header">
+                    <h1>
+                        ${title}
+                    </h1>
+                </div>
+
+                <!-- content -->
+                <div class="content">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="box box-default">
@@ -13,8 +17,8 @@
                                 <!-- ./box-header -->
 
                                 <div class="box-body">
-                                    <a href="${linkTo[CorController].addForm}" class="btn-floating"><i class="fa fa-lg fa-plus"></i></a>
-                                    <table class="table table-hover table-bordered table-condensed" ng-show="cc.cores.length > 0">
+                                    <a href="cor/add" class="btn-floating"><i class="fa fa-lg fa-plus"></i></a>
+                                    <table class="table table-hover table-bordered table-condensed" ng-show="cor.cores.length > 0">
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%;">#</th>
@@ -23,16 +27,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="c in cc.cores">
+                                            <tr ng-repeat="c in cor.cores">
                                                 <td>{{$index+1}}</td>
                                                 <td>{{c.nome}}</td>
                                                 <td>
-                                                    <a ng-href="{{cc.url}}/cor/edit/{{c.id}}" role="button" title="${editTitle}"><i class="fa fa-fw fa-pencil"></i></a>
+                                                    <a ng-href="cor/{{c.id}}" role="button" title="${editTitle}"><i class="fa fa-fw fa-pencil"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <p ng-hide="cc.cores.length > 0">Nenhuma cor cadastrada até o momento. Clique <a href="${linkTo[CorController].addForm}">aqui</a> para cadastrar.</p>
+                                    <p ng-hide="cor.cores.length > 0">Nenhuma cor cadastrada até o momento. Clique <a href="cor/add">aqui</a> para cadastrar.</p>
                                 </div>
                                 <!-- ./box-body -->
                             </div>
@@ -59,5 +63,5 @@
                         <!-- ./col-xs-12 -->
                     </div>
                     <!-- ./row -->
-    </jsp:body>
-</t:template>
+                </div>
+                <!-- ./content -->

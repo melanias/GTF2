@@ -1,7 +1,11 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags/" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<t:template title="${title}" subTitle="${subTitle}">
-    <jsp:body>
+                <div class="content-header">
+                    <h1>
+                        ${title}
+                    </h1>
+                </div>
+
+                <!-- content -->
+                <div class="content">
                     <div class="row">
                         <div class="col-xs-3">
                             <div class="info-box">
@@ -20,11 +24,11 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Veículos</span>
-                                    <span class="info-box-number">${totalVehicles}</span>
+                                    <span class="info-box-number">0</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- ./row -->
-    </jsp:body>
-</t:template>
+                </div>
+                <!-- ./content -->

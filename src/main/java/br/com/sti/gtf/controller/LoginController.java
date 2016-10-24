@@ -73,7 +73,7 @@ public class LoginController extends MainController {
         //Efetuar login caso não tenha ocorrido algum erro
         funcionarioSession.login(funcionario);
 
-        result.redirectTo(IndexController.class).index();
+        result.redirectTo(IndexController.class).template();
     }
 
     @Get("/logout")

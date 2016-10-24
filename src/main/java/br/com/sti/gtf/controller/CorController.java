@@ -1,5 +1,6 @@
 package br.com.sti.gtf.controller;
 
+import br.com.caelum.vraptor.Consumes;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,10 +12,12 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import static br.com.caelum.vraptor.view.Results.json;
+import static br.com.caelum.vraptor.view.Results.status;
 
 import br.com.sti.gtf.bean.Cor;
 import br.com.sti.gtf.repository.CorRepository;
@@ -56,7 +59,6 @@ public class CorController extends MainController {
 
     @Get("/add")
     public void addForm() {
-        //Title and subtitle
         result.include("title", "Cor")
               .include("subTitle", "Cadastrar cor");
     }
@@ -81,43 +83,54 @@ public class CorController extends MainController {
         result.redirectTo(this).addForm();
     }
 
-    @Get("/edit/{id}")
-    public Cor editForm(Integer id) {
+    @Get("/edit")
+    public void editForm() {
+        result.include("title", "Cor")
+              .include("subTitle", "Editar cor");
+    }
+
+    @Get("/{id}")
+    public void editForm(Integer id) {
         Cor cor = repository.find(id);
 
         if (cor == null) {
-            result.redirectTo(this).list();
+            result.use(status()).notFound();
+        } else {
+            result.use(json()).withoutRoot().from(cor).serialize();
         }
-
-        //Title and subtitle
-        result.include("title", "Cor")
-              .include("subTitle", "Editar cor");
-
-        return cor;
     }
 
     @Transactional
-    @Post("/edit/{cor.id}")
-    public void edit(Cor cor) {
-        //Validar nome
-        if (StringUtils.isBlank(cor.getNome())) {
-            validator.add(new I18nMessage("cor.nome", "cor.em.branco"));
-        } else {
-            validator.ensure(repository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
-        }
-
-        if (validator.hasErrors()) {
-            //Title and subtitle
-            result.include("title", "Cor")
-                  .include("subTitle", "Editar cor");
-        }
-
-        validator.onErrorUsePageOf(this).editForm(cor.getId());
-
-        //Salvar alterações
+    @Put("/{cor.id}")
+    @Consumes("application/json")
+    public void update(Cor cor) {
         repository.merge(cor);
-        result.include("successMessage", "Cor alterada com sucesso.");
-
-        result.redirectTo(this).editForm(cor.getId());
+        result.use(status()).ok();
     }
+
+
+//    @Transactional
+//    @Put("/{cor.id}")
+//    public void edit(Cor cor) {
+//        //Validar nome
+//        if (StringUtils.isBlank(cor.getNome())) {
+//            validator.add(new I18nMessage("cor.nome", "cor.em.branco"));
+//        } else {
+//            validator.ensure(repository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
+//        }
+//
+//        if (validator.hasErrors()) {
+//            //Title and subtitle
+//            result.include("title", "Cor")
+//                  .include("subTitle", "Editar cor");
+//        }
+//
+//        validator.onErrorUsePageOf(this).editForm(cor.getId());
+//
+//        //Salvar alterações
+//        repository.merge(cor);
+//        result.include("successMessage", "Cor alterada com sucesso.");
+//
+//        result.redirectTo(this).editForm(cor.getId());
+//    }
 }
