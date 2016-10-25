@@ -86,7 +86,7 @@ public class CorController extends MainController {
     @Get("/edit")
     public void editForm() {
         result.include("title", "Cor")
-              .include("subTitle", "Editar cor");
+                .include("subTitle", "Editar cor");
     }
 
     @Get("/{id}")

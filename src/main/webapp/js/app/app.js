@@ -1,41 +1,28 @@
 (function(angular) {
     "use strict";
 
-    //angular.module("GTF", ["ngRoute", "ngResource"])
-    angular.module("GTF", ["GTF.Service", "GTF.Controller", "ngRoute"])
-            .config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
-                    $locationProvider.html5Mode(true);
+    angular.module("GTF", ["ui.router", "ngResource", "GTF.Services", "GTF.Controllers"]);
 
-                    $routeProvider
-                        .when("/", {
-                            templateUrl : "index"
-                        })
-
-                        .when("/logout", {
-                            templateUrl : "logout"
-                        })
-
-                        .when("/cor/list", {
-                            templateUrl  : "cor/list",
-                            controller   : "CorController",
-                            controllerAs : "cor"
-                        })
-
-                        .when("/cor/add", {
-                            templateUrl  : "cor/add",
-                            controller   : "CorController",
-                            controllerAs : "cor"
-                        })
-
-                        .when("/cor/:id", {
-                            templateUrl  : "cor/edit",
-                            controller   : "CorController",
-                            controllerAs : "cor"
-
-                            //templateUrl  : function(params) { return "cor/"+ params.id +"/edit"; },
-                        })
-
-                        .otherwise({ redirectTo : "/" });
-                }]
-            );
+    angular.module("GTF").config(["$stateProvider",
+        function($stateProvider) {
+            $stateProvider.state("index", {
+                url: "/",
+                templateUrl: "index"
+            }).state("cor", {
+                url: "/cor",
+                templateUrl: "cor/list",
+                controller: "CorController"
+            }).state("novaCor", {
+                url: "/cor/add",
+                templateUrl: "cor/add",
+                controller: "CorController"
+            }).state("editarCor", {
+                url: "/cor/:id/edit",
+                templateUrl: "cor/edit",
+                controller: "CorController"
+            });
+        }
+    ]).run(function($state){
+        $state.go("index");
+    });
 })(window.angular);

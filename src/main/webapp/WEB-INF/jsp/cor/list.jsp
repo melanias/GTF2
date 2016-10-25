@@ -17,8 +17,8 @@
                                 <!-- ./box-header -->
 
                                 <div class="box-body">
-                                    <a href="cor/add" class="btn-floating"><i class="fa fa-lg fa-plus"></i></a>
-                                    <table class="table table-hover table-bordered table-condensed" ng-show="cor.cores.length > 0">
+                                    <a ui-sref="novaCor" class="btn-floating"><i class="fa fa-lg fa-plus"></i></a>
+                                    <table class="table table-hover table-bordered table-condensed" ng-show="cores.length > 0">
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%;">#</th>
@@ -27,16 +27,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="c in cor.cores">
+                                            <tr ng-repeat="cor in cores">
                                                 <td>{{$index+1}}</td>
-                                                <td>{{c.nome}}</td>
+                                                <td>{{cor.nome}}</td>
                                                 <td>
-                                                    <a ng-href="cor/{{c.id}}" role="button" title="${editTitle}"><i class="fa fa-fw fa-pencil"></i></a>
+                                                    <a ui-sref="editarCor({id : cor.id})" role="button" title="${editTitle}"><i class="fa fa-fw fa-pencil"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <p ng-hide="cor.cores.length > 0">Nenhuma cor cadastrada até o momento. Clique <a href="cor/add">aqui</a> para cadastrar.</p>
+                                    <p ng-hide="cores.length > 0">Nenhuma cor cadastrada até o momento. Clique <a ui-sref="novaCor">aqui</a> para cadastrar.</p>
                                 </div>
                                 <!-- ./box-body -->
                             </div>

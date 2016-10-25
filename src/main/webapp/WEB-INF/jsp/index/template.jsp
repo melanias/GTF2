@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html ng-app="GTF">
+<html data-ng-app="GTF">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +56,7 @@
         <!-- wrapper -->
         <div class="wrapper">
             <header class="main-header">
-                <a href="index" class="logo">
+                <a ui-sref="index" class="logo">
                     <span class="logo-mini">${environment.get('app.home')}</span>
                     <span class="logo-lg"><strong>${environment.get('app.home')}</strong></span>
                 </a>
@@ -100,14 +100,14 @@
                         <li class="header text-uppercase">Menu principal</li>
 
                         <li>
-                            <a href="index">
+                            <a ui-sref="index">
                                 <i class="fa fa-home"></i>
                                 <span>In&iacute;cio</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="cor/list">
+                            <a ui-sref="cor">
                                 <i class="fa fa-paint-brush"></i>
                                 <span>Cor</span>
                             </a>
@@ -126,7 +126,7 @@
             <!-- ./main-sidebar -->
 
             <!-- content-wrapper -->
-            <div class="content-wrapper" ng-view>
+            <div class="content-wrapper" data-ui-view>
 
             </div>
             <!-- ./content-wrapper -->
@@ -135,7 +135,7 @@
                 <div class="pull-right hidden-xs">
                     <strong>Versão:</strong>&nbsp;${environment.get('app.version')}
                 </div>
-                <strong>Copyright&nbsp;&copy;&nbsp;2016&nbsp;-&nbsp;<a href="index">Locadora São Sebastião</a>.</strong>
+                <strong>Copyright&nbsp;&copy;&nbsp;2016&nbsp;-&nbsp;<a ui-sref="index">Locadora São Sebastião</a>.</strong>
                 Todos os direitos reservados.
             </footer>
         </div>
@@ -173,9 +173,9 @@
         <script src="${pageContext.request.contextPath}/js/gtf.js"></script>
 
         <!-- AngularJS -->
-        <script src="${pageContext.request.contextPath}/js/angular.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/angular-route.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/angular-resource.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/angular.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/angular-resource.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/angular-ui-router.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/app/app.js"></script>
         <script src="${pageContext.request.contextPath}/js/app/service.js"></script>
         <script src="${pageContext.request.contextPath}/js/app/controller.js"></script>

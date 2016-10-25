@@ -1,16 +1,17 @@
 (function(angular) {
     "use strict";
 
-    var app = angular.module("GTF.Controller", []);
+    var app = angular.module("GTF.Controllers", []);
 
     //Cor
-    app.controller("CorController", ["$routeParams" , "$scope", "CorService", function($routeParams, $scope, CorService) {
-            var self        = this;
-                self.cor    = $routeParams.id === undefined ? {} : CorService.get({ id : $routeParams.id });
-                self.cores  = CorService.query();
+    app.controller("CorController", function($scope, $state, $stateParams, CorService) {
+        $scope.cores = CorService.query();
+        $scope.cor = $stateParams.id === undefined ? {} : CorService.get({ id : $stateParams.id });
 
-            self.update = function() {
-                CorService.update({ id : self.cor.id }, angular.toJson(self.cor));
-            };
-    }]);
+        $scope.updateColor = function() {
+            $scope.cor.$update(function() {
+                $state.go("cor");
+            });
+        };
+    });
 })(window.angular);
