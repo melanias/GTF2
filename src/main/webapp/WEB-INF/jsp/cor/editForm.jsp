@@ -8,7 +8,7 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-xs-12">
-                            <form class="form-horizontal" novalidate>
+                            <form name="form" class="form-horizontal" novalidate>
                                 <div class="box box-default">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">
@@ -27,7 +27,7 @@
                                                 <input type="hidden" ng-model="cor.id">
 
                                                 <label for="nome">Nome da cor</label>
-                                                <input type="text" ng-model="cor.nome" class="form-control input-sm" id="nome" maxlength="50">
+                                                <input type="text" ng-model="cor.nome" class="form-control input-sm" id="nome" name="nome" maxlength="50" required>
                                             </div>
                                         </div>
                                     </div>
@@ -35,33 +35,15 @@
 
                                     <div class="box-footer">
                                         <a ui-sref="cor" class="btn btn-sm btn-default" role="button">Cancelar</a>
-                                        <button class="btn btn-sm btn-primary" ng-click="updateColor()" type="submit">Salvar</button>
+                                        <button class="btn btn-sm btn-primary" ng-click="updateColor()" type="button" ng-disabled="form.nome.$invalid">Salvar</button>
                                     </div>
                                 </div>
                                 <!-- ./box -->
                             </form>
-                            <%--
-                            <c:if test="${not empty successMessage}">
-                            <div class="alert alert-success alert-dismissable">
+                            <div class="alert alert-danger alert-dismissable" ng-show="errors.length > 0">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <p><strong>${successMessage}</strong></p>
+                                <p ng-repeat="error in errors"><strong>{{error.message}}</strong></p>
                             </div>
-                            </c:if>
-                            <c:if test="${not empty errors}">
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <c:forEach items="${errors}" var="error">
-                                <p><strong>${error.message}</strong></p>
-                                </c:forEach>
-                            </div>
-                            </c:if>
-                            <c:if test="${not empty exception}">
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <p>Ocorreu um erro:&nbsp;<strong>${exception.message}</strong></p>
-                            </div>
-                            </c:if>
-                            --%>
                         </div>
                         <!-- ./col-xs-12 -->
                     </div>

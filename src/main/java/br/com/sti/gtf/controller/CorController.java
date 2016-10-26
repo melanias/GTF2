@@ -18,6 +18,7 @@ import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import static br.com.caelum.vraptor.view.Results.json;
 import static br.com.caelum.vraptor.view.Results.status;
+import static br.com.caelum.vraptor.view.Results.representation;
 
 import br.com.sti.gtf.bean.Cor;
 import br.com.sti.gtf.repository.CorRepository;
@@ -104,33 +105,18 @@ public class CorController extends MainController {
     @Put("/{cor.id}")
     @Consumes("application/json")
     public void update(Cor cor) {
+        //Validar nome
+        if (StringUtils.isBlank(cor.getNome())) {
+            validator.add(new I18nMessage("cor.nome", "cor.em.branco"));
+        } else {
+            validator.ensure(repository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
+        }
+
+        //Exibir os erros de validaçõo
+        validator.onErrorSendBadRequest();
+
+        //Salvar
         repository.merge(cor);
         result.use(status()).ok();
     }
-
-
-//    @Transactional
-//    @Put("/{cor.id}")
-//    public void edit(Cor cor) {
-//        //Validar nome
-//        if (StringUtils.isBlank(cor.getNome())) {
-//            validator.add(new I18nMessage("cor.nome", "cor.em.branco"));
-//        } else {
-//            validator.ensure(repository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
-//        }
-//
-//        if (validator.hasErrors()) {
-//            //Title and subtitle
-//            result.include("title", "Cor")
-//                  .include("subTitle", "Editar cor");
-//        }
-//
-//        validator.onErrorUsePageOf(this).editForm(cor.getId());
-//
-//        //Salvar alterações
-//        repository.merge(cor);
-//        result.include("successMessage", "Cor alterada com sucesso.");
-//
-//        result.redirectTo(this).editForm(cor.getId());
-//    }
 }

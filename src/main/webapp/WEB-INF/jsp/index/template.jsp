@@ -82,8 +82,8 @@
                                     <i class="fa fa-fw fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="${linkTo[FuncionarioController].editAccount}"><span class="fa fa-pencil"></span>&nbsp;Alterar conta</a></li>
-                                    <li><a href="${linkTo[FuncionarioController].editPassword}"><span class="fa fa-key"></span>&nbsp;Alterar senha</a></li>
+                                    <li><a href="${linkTo[FuncionarioController].editAccount}"><i class="fa fa-pencil"></i>&nbsp;Alterar conta</a></li>
+                                    <li><a href="${linkTo[FuncionarioController].editPassword}"><i class="fa fa-key"></i>&nbsp;Alterar senha</a></li>
                                     <li class="divider"></li>
                                     <li><a href="logout"><span class="fa fa-sign-out"></span>&nbsp;Sair</a></li>
                                 </ul>
