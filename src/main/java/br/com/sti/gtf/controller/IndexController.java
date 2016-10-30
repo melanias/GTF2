@@ -31,7 +31,7 @@ public class IndexController extends MainController {
         this.corRepository = corRepository;
     }
 
-    @Get("/")
+    @Get(value={"", "/"})
     public void template() {
         result.include("title", "GTF")
                 .include("subTitle", "Gestão Total de Frota");

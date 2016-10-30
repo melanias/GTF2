@@ -45,6 +45,9 @@ public class CorController extends MainController {
         this.repository = repository;
     }
 
+    @Get("/main")
+    public void main() {}
+
     @Get
     public void list() {
         result.include("title", "Cor")
@@ -52,8 +55,7 @@ public class CorController extends MainController {
               .include("editTitle", "Editar cor");
     }
 
-    @Get
-    @Path(value={"", "/"})
+    @Get(value={"", "/"})
     public void listAll() {
         result.use(json()).withoutRoot().from(repository.listAllOrderedByField("nome")).serialize();
     }
@@ -65,7 +67,8 @@ public class CorController extends MainController {
     }
 
     @Transactional
-    @Post("/add")
+    @Post(value={"", "/"})
+    @Consumes("application/json")
     public void add(Cor cor) {
         //Validar nome
         if (StringUtils.isBlank(cor.getNome())) {
@@ -74,14 +77,12 @@ public class CorController extends MainController {
             validator.ensure(repository.isUniqueColor(cor), new I18nMessage("cor.nome", "cor.existente"));
         }
 
-        //Exibir form com os erros de validação
-        validator.onErrorRedirectTo(this).addForm();
+        //Exibir os erros de validaçõo
+        validator.onErrorSendBadRequest();
 
         //Salvar
         repository.persist(cor);
-        result.include("successMessage", "Cor cadastrada com sucesso.");
-
-        result.redirectTo(this).addForm();
+        result.use(status()).ok();
     }
 
     @Get("/edit")

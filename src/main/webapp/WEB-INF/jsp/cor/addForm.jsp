@@ -1,68 +1,30 @@
-                <div class="content-header">
-                    <h1>
-                        ${title}
-                    </h1>
-                </div>
+                    <section class="md-whiteframe-1dp">
+                        <md-toolbar class="md-whiteframe-1dp">
+                            <h1 class="md-toolbar-tools">
+                                <span flex>{{subTitle}}</span>
+                                <md-button class="md-icon-button" ui-sref="^.list">
+                                    <md-tooltip md-direction="left">
+                                        Voltar
+                                    </md-tooltip>
+                                    <md-icon>keyboard_arrow_left</md-icon>
+                                </md-button>
+                            </h1>
+                        </md-toolbar>
 
-                <!-- content -->
-                <div class="content">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <form action="" class="form-horizontal" method="post">
-                                <div class="box box-default">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">
-                                            ${subTitle}
-                                        </h3>
-
-                                        <div class="box-tools pull-right">
-                                            <a href="${linkTo[CorController].list}" class="btn btn-box-tool" role="button" title="Voltar"><i class="fa fa-lg fa-chevron-left"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- ./box-header -->
-
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <div class="col-md-4">
-                                                <label for="nome">Nome da cor</label>
-                                                <input type="text" name="cor.nome" value="${cor.nome}" class="form-control input-sm" id="nome" maxlength="50">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ./box-body -->
-
-                                    <div class="box-footer">
-                                        <a href="cor/list" class="btn btn-sm btn-default" role="button">Cancelar</a>
-                                        <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
-                                    </div>
-                                </div>
-                                <!-- ./box -->
+                        <div layout-margin layout="column">
+                            <form name="form" novalidate ng-submit="addColor()">
+                                <md-input-container>
+                                    <label for="nome">Cor</label>
+                                    <input ng-model="cor.nome" id="nome" name="nome" maxlength="50" required autocomplete="off">
+                                </md-input-container>
+                                <md-divider></md-divider>
+                                <br>
+                                <a ui-sref="^.list" class="md-button md-raised md-warn">Cancelar</a>
+                                <md-button type="submit" class="md-raised md-accent" ng-disabled="form.$pristine || form.$invalid">Salvar</md-button>
                             </form>
-                            <%--
-                            <c:if test="${not empty successMessage}">
-                            <div class="alert alert-success alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <p><strong>${successMessage}</strong></p>
-                            </div>
-                            </c:if>
-                            <c:if test="${not empty errors}">
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <c:forEach items="${errors}" var="error">
-                                <p><strong>${error.message}</strong></p>
-                                </c:forEach>
-                            </div>
-                            </c:if>
-                            <c:if test="${not empty exception}">
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <p>Ocorreu um erro:&nbsp;<strong>${exception.message}</strong></p>
-                            </div>
-                            </c:if>
-                            --%>
                         </div>
-                        <!-- ./col-xs-12 -->
-                    </div>
-                    <!-- ./row -->
-                </div>
-                <!-- ./content -->
+                        <div class="alert alert-danger alert-dismissable" ng-show="errors.length > 0">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <p ng-repeat="error in errors"><strong>{{error.message}}</strong></p>
+                        </div>
+                    </section>

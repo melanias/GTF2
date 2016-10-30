@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="GTF">
+<html data-ng-app="GTF">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,33 +22,33 @@
 
         <title>${title.concat(" - ").concat(subTitle)}</title>
     </head>
-    <body layout="row" ng-cloak>
+    <body layout="row" data-ng-cloak>
         <!-- sidenav -->
         <md-sidenav flex="15" md-is-locked-open="true" class="md-whiteframe-1dp">
             <md-toolbar class="md-hue-2">
-                <md-button layout="column" layout-align="center center" class="md-toolbar-tools" ui-sref="index">
+                <md-button layout="column" layout-align="center center" class="md-toolbar-tools" data-ui-sref="index">
                     <h1>${environment.get('app.home')}</h1>
                 </md-button>
             </md-toolbar>
 
             <md-content flex="grow">
                 <md-list flex>
-                    <md-subheader class="md-no-sticky">Menu Principal<md-icon class="icon-18">arrow_downward</md-icon></md-subheader>
-                    <div class="layout-spacer-10"></div>
+                    <md-subheader class="md-no-sticky">Menu Principal</md-subheader>
+                    <md-divider></md-divider>
 
                     <!-- Página inicial -->
-                    <md-list-item ui-sref="index" ui-sref-active="active">
-                        <i class="material-icons icon-24">home</i>
-                        In&iacute;cio
+                    <md-list-item data-ui-sref="index">
+                        <span>In&iacute;cio</span>
                     </md-list-item>
 
-                    <div class="layout-spacer-10"></div>
+                    <md-divider></md-divider>
 
                     <!-- Gerenciamento de Cor -->
-                    <md-list-item ui-sref="cor.list" ui-sref-active="{'active': 'cor'}">
-                        <i class="material-icons icon-24">invert_colors</i>
-                        Cor
+                    <md-list-item data-ui-sref="cor">
+                        <span>Cor</span>
                     </md-list-item>
+
+                    <md-divider></md-divider>
                 </md-list>
             </md-content>
         </md-sidenav>
@@ -56,7 +56,27 @@
 
         <!-- wrapper -->
         <div flex layout="column">
-            <md-content flex ui-view></md-content>
+            <md-toolbar class="md-hue-2 md-whiteframe-1dp">
+                <div class="md-toolbar-tools">
+                    <h1 class="md-headline">{{title}} : Barra com o título da página atual</h1>
+                </div>
+            </md-toolbar>
+
+            <!-- content -->
+            <md-content flex layout="column" md-scroll-y class="md-body-1">
+                <div flex="grow" layout-margin data-ui-view></div>
+
+                <md-toolbar class="md-hue-2">
+                    <div flex="nogrow" layout-margin layout="row" layout-align="center center" class="md-toolbar-tools">
+                        <div>
+                            Copyright &copy; 2016&nbsp;&#8211;&nbsp;<a ui-sref="index" class="md-accent">Locadora São Sebastião.</a>
+                        </div>
+                        <span flex></span>
+                        <strong>Versão:</strong>&nbsp;${environment.get('app.version')}
+                    </div>
+                </md-toolbar>
+            </md-content>
+            <!-- ./content -->
         </div>
         <!-- ./wrapper -->
 
