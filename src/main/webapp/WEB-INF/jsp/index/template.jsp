@@ -17,6 +17,9 @@
         <!-- Angular Material v1.1.1 -->
         <link href="${pageContext.request.contextPath}/js/lib/angular-material.min.css" rel="stylesheet">
 
+        <!-- Font Awesome v4.7.0 -->
+        <link href="${pageContext.request.contextPath}/plugins/fa/css/font-awesome.min.css" rel="stylesheet">
+
         <!-- GTF -->
         <link href="${pageContext.request.contextPath}/css/gtf.css" rel="stylesheet">
 
@@ -33,12 +36,12 @@
 
             <md-content flex="grow">
                 <md-list flex>
-                    <md-subheader class="md-no-sticky">Menu Principal<md-icon class="icon-18">arrow_downward</md-icon></md-subheader>
+                    <md-subheader class="md-no-sticky">Menu Principal<i class="fa fa-arrow-down"></i></md-subheader>
                     <div class="layout-spacer-10"></div>
 
                     <!-- Página inicial -->
                     <md-list-item ui-sref="index" ui-sref-active="active">
-                        <i class="material-icons icon-24">home</i>
+                        <i class="fa fa-home icon-22" aria-hidden="true"></i>
                         In&iacute;cio
                     </md-list-item>
 
@@ -46,7 +49,7 @@
 
                     <!-- Gerenciamento de Cor -->
                     <md-list-item ui-sref="cor.list" ui-sref-active="{'active': 'cor'}">
-                        <i class="material-icons icon-24">invert_colors</i>
+                        <i class="fa fa-paint-brush icon-18" aria-hidden="true"></i>
                         Cor
                     </md-list-item>
                 </md-list>

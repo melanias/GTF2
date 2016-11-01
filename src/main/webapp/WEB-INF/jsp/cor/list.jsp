@@ -32,7 +32,8 @@
                                                         <md-tooltip md-direction="left">
                                                             Editar cor
                                                         </md-tooltip>
-                                                        <md-icon>mode_edit</md-icon>
+                                                        <!--<md-icon>mode_edit</md-icon>-->
+                                                        <i class="fa fa-fw fa-pencil"></i>
                                                     </md-button>
                                                 </td>
                                             </tr>

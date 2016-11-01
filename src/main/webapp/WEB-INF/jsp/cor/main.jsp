@@ -5,12 +5,14 @@
                         <span flex class="md-subhead">{{subTitle}}</span>
                         <md-menu>
                             <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                                <md-icon>more_vert</md-icon>
+                                <!--<md-icon>more_vert</md-icon>-->
+                                <i class="fa fa-ellipsis-v icon-22"></i>
                             </md-button>
                             <md-menu-content width="4">
                                 <md-menu-item>
                                     <md-button href="logout">
-                                        <md-icon>exit_to_app</md-icon>
+                                        <!--<md-icon>exit_to_app</md-icon>-->
+                                        <i class="fa fa-sign-out"></i>
                                         Sair
                                     </md-button>
                                 </md-menu-item>
