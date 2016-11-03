@@ -11,10 +11,9 @@
                             </h1>
                         </md-toolbar>
 
-                        <div layout-margin>
+                        <div>
                             <div class="box box-default">
                                 <div class="box-body">
-                                    <a ui-sref="^.add" class="btn-floating"><i class="fa fa-lg fa-plus"></i></a>
                                     <table class="table table-hover table-bordered table-condensed" ng-show="cores.length > 0">
                                         <thead>
                                             <tr>

@@ -27,7 +27,7 @@
     </head>
     <body layout="row" ng-cloak>
         <!-- sidenav -->
-        <md-sidenav flex="15" md-is-locked-open="true" class="md-whiteframe-1dp">
+        <md-sidenav flex="15" md-is-locked-open="true" class="md-sidenav-left md-whiteframe-1dp">
             <md-toolbar class="md-hue-2">
                 <md-button layout="column" layout-align="center center" class="md-toolbar-tools" ui-sref="index">
                     <h1>${environment.get('app.home')}</h1>
@@ -36,7 +36,7 @@
 
             <md-content flex="grow">
                 <md-list flex>
-                    <md-subheader class="md-no-sticky">Menu Principal<i class="fa fa-arrow-down"></i></md-subheader>
+                    <md-subheader class="md-no-sticky">Menu Principal<i class="fa fa-arrow-down" aria-hidden="true"></i></md-subheader>
                     <div class="layout-spacer-10"></div>
 
                     <!-- Página inicial -->
@@ -59,7 +59,27 @@
 
         <!-- wrapper -->
         <div flex layout="column">
-            <md-content flex ui-view></md-content>
+            <md-toolbar class="md-hue-2 md-whiteframe-1dp">
+                <h1 class="md-toolbar-tools">
+                    <span class="md-title">{{title}}</span>
+                    <span class="md-subhead" ng-show="subTitle"><i class="fa fa-arrow-right" style="margin: 0 15px 0 10px;" aria-hidden="true"></i>{{subTitle}}</span>
+                    <md-menu>
+                        <md-button class="md-icon-button" aria-label="Ellipsis" ng-click="$mdOpenMenu($event)">
+                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button href="logout">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    Sair
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </h1>
+            </md-toolbar>
+
+            <md-content flex ui-view layout-padding md-scroll-y class="md-body-1"></md-content>
         </div>
         <!-- ./wrapper -->
 

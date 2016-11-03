@@ -55,12 +55,9 @@
     ]).run(function($state, $rootScope) {
         $state.go("index");
 
-        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
             $rootScope.title = toState.data.title;
-
-            if (toState.name !== "index") {
-                $rootScope.subTitle = toState.data.subTitle;
-            }
+            $rootScope.subTitle = toState.data.subTitle;
         });
     });
 })(window.angular);
